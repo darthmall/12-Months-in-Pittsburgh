@@ -319,6 +319,9 @@ width: 91.35%;
         text-transform: none;
     }
 
+    #cards {
+    }
+    
     svg text {
         font-family: 'PT Sans Narrow', sans-serif;
         font-size: 1.3em;

@@ -38,7 +38,7 @@ CARDVIZ = {
 				});
 
 			var months = d3.nest()
-				.key(function (d) { return d.key[1]; })
+				.key(function (d) { return CARDVIZ.MONTHS[d.key[1]]; })
 				.rollup(function (d) { return cards.entries(d); });
 
 			var cardData = partition.nodes({
@@ -61,7 +61,9 @@ CARDVIZ = {
 				.style('strokeWidth', '3')
 				.style('fill', function (d) { 
 					return (d.color) ? '#' + d.color : d3.hsl(0, 0, lScale(d.depth)).toString();
-				});
+				})
+				.append('title')
+				.text(function (d) { return d.key; });
 
 			colors.selectAll('text')
 				.data(cardData)
@@ -119,7 +121,11 @@ CARDVIZ = {
 			var w = svg.width();
 			var h = svg.height();
 
-			colors.attr('transform', 'translate(' + w/2 + ',' + h/2 + ') scale(' + w/width + ')');
+			if (w < h) {
+				colors.attr('transform', 'translate(' + w/2 + ',' + h/2 + ') scale(' + w/width + ')');
+			} else {
+				colors.attr('transform', 'translate(' + w/2 + ',' + h/2 + ') scale(' + h/height + ')');				
+			}
 		}
 
 		d3.json('/cards/_design/cardviz/_view/senders?group=true', bargraph);
