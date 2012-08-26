@@ -84,14 +84,14 @@ CARDVIZ = {
 					.domain([0, d3.max(json.rows.map(function (d) {
 						return d.value;
 					}))])
-					.range([0, w * 0.9]);
+					.range([0, (w - 65) * 0.9]);
 
 				d3.select('#senders').selectAll('rect')
 					.data(json.rows)
 					.enter()
 					.append('rect')
 					.attr('class', 'bar')
-					.attr('x', 0)
+					.attr('x', 65)
 					.attr('y', function (d, i) {
 						return margin + (i * h);
 					})
@@ -104,7 +104,7 @@ CARDVIZ = {
 					.data(json.rows)
 					.enter()
 					.append('text')
-					.attr('x', 5)
+					.attr('x', 60)
 					.attr('y', function (d, i) {
 						return i * h + (h / 2);
 					})

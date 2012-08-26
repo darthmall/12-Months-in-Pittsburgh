@@ -329,7 +329,7 @@ width: 91.35%;
     #senders text {
         alignment-baseline: central;
         fill: black;
-        text-anchor: start;
+        text-anchor: end;
         text-transform: none;
     }
 
