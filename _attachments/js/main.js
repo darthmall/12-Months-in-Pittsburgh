@@ -14,7 +14,7 @@ CARDVIZ = {
 		var partition = d3.layout.partition()
 			.size([2 * Math.PI, radius * radius])
 			.sort(function (a, b) { return b.frequency - a.frequency; })
-			.children(function (d) { return (d.children) ? d.children : d.values; })
+			.children(function (d) { return d.values; })
 			.value(function (d) { return d.frequency; });
 
 		var arc = d3.svg.arc()
@@ -41,27 +41,38 @@ CARDVIZ = {
 				.key(function (d) { return d.key[1]; })
 				.rollup(function (d) { return cards.entries(d); });
 
-			var cardData = {
+			var cardData = partition.nodes({
 				'key': 'cards',
 				'values': d3.nest()
 					.key(function (d) { return d.key[0]; })
 					.rollup(function (d) { return months.entries(d); })
 					.entries(json.rows)
-				};
+				});
 
-			colors.data([cardData]).selectAll('path')
-				.data(partition.nodes)
+			colors.selectAll('path')
+				.data(cardData)
 				.enter()
 				.append('path')
 				.attr('display', function (d) { return (d.depth) ? null : 'none'; })
 				.attr('d', arc)
 				.attr('fillRule', 'evenodd')
-				.attr('id', function (d) { return d.key + '-' + d.depth + '-' + d.values; })
+				.attr('id', function (d) { return d.depth + '-' + d.key; })
 				.style('stroke', '#fff')
 				.style('strokeWidth', '3')
 				.style('fill', function (d) { 
 					return (d.color) ? '#' + d.color : d3.hsl(0, 0, lScale(d.depth)).toString();
 				});
+
+			colors.selectAll('text')
+				.data(cardData)
+				.enter()
+				.append('text')
+				.attr('display', function (d) { return (d.depth) ? null : 'none'; })
+				.attr("transform", function(d) {
+				        var angle = d.x + d.dx / 2 * 180 / Math.PI - 90;
+				        return "rotate(" + angle + ")translate(" + d.y + ")rotate(" + (angle > 90 ? -180 : 0) + ")";
+				      })
+				.text(function (d) { return d.key; });
 		});
 
 		var bargraph = function (json) {
