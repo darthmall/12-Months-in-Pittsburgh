@@ -1,8 +1,8 @@
 function (doc) {
 	var toks = doc._id.split('-');
-	var year = toks[0].substr(0, 4);
-	var month = toks[0].substr(4,6);
-	var num = toks[1];
+	var year = Number(toks[0].substr(0, 4));
+	var month = Number(toks[0].substr(4,6)) - 1;
+	var num = Number(toks[1]) - 1;
 	var stops = [];
 	var offset = 0;
 

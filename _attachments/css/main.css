@@ -325,11 +325,19 @@ width: 91.35%;
         height: 20px;
     }
 
-    #colors text {
+    svg text {
         font-family: 'PT Sans Narrow', sans-serif;
         font-size: 1.8em;
         text-anchor: middle;
         text-transform: uppercase;
+    }
+
+    #senders text {
+        color: white;
+    }
+
+    #senders rect.bar {
+        fill: red;
     }
 
 /* ============================= */
