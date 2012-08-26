@@ -31,7 +31,10 @@ CARDVIZ = {
 						return '#' + d['stop-color'];
 					});
 
-				d3.select('#colors').selectAll('rect')
+				var viz = d3.select('#colors').append('g')
+					.attr('transform', 'translate(' + center[0] + ',' + center[1] + ')');
+
+				viz.selectAll('rect')
 					.data(json.rows)
 					.enter()
 					.append('rect')
@@ -39,26 +42,26 @@ CARDVIZ = {
 						return 'url(#' + d.id + '-gradient)';
 				  	})
 				  	.attr('x', function (d, i) {
-				  		return center[0] + 180 + (d.key[2] * 42);
+				  		return 60 + (d.key[2] * 32);
 				  	})
-				  	.attr('y', (center[1] - 25))
-				  	.attr('width', 38)
-				  	.attr('height', 50)
+				  	.attr('y', -15)
+				  	.attr('width', 30)
+				  	.attr('height', 30)
 				  	.attr('transform', function (d) {
 				  		var angle = 30 + d.key[1] * 30;
-				  		return 'rotate(' + angle + ',' + center[0] + ',' + center[1] + ')';
+				  		return 'rotate(' + angle + ')';
 				  	});
 
-				 d3.select('#colors').selectAll('text')
+				 viz.selectAll('text')
 				 	.data(json.rows)
 				 	.enter()
 				 	.append('text')
-				 	.attr('x', center[0])
-				 	.attr('y', center[1] - 150)
+				 	.attr('x', 0)
+				 	.attr('y', -150)
 				 	.attr('width', 50)
 				 	.attr('transform', function (d) {
 				 		var angle = 120 + (d.key[1] * 30);
-				 		return 'rotate(' + angle + ',' + center[0] + ',' + center[1] + ')';
+				 		return 'rotate(' + angle + ')';
 				 	})
 				 	.text(function (d) {
 				 		return CARDVIZ.MONTHS[d.key[1]];
@@ -68,39 +71,37 @@ CARDVIZ = {
 
 		var bargraph = function (json) {
 			if (json) {
-				var w = $('#senders').width() / json.rows.length;
-				var h = $('#senders').height();
-				var margin = Math.max(1, Math.floor(w * 0.1));
+				var w = $('#senders').width();
+				var h = $('#senders').width() / json.rows.length;
+				var margin = Math.max(1, Math.floor(h * 0.1));
 				var scale = d3.scale.linear()
 					.domain([0, d3.max(json.rows.map(function (d) {
 						return d.value;
 					}))])
-					.range([0, h * 0.9]);
+					.range([0, w * 0.9]);
 
 				d3.select('#senders').selectAll('rect')
 					.data(json.rows)
 					.enter()
 					.append('rect')
 					.attr('class', 'bar')
-					.attr('x', function (d, i) {
-						return margin + (i * w);
+					.attr('x', 0)
+					.attr('y', function (d, i) {
+						return margin + (i * h);
 					})
-					.attr('y', function (d) {
-						return h - scale(d.value);
-					})
-					.attr('width', w - (2 * margin))
-					.attr('height', function (d) {
+					.attr('width', function (d) {
 						return scale(d.value);
-					});
+					})
+					.attr('height', h - (2 * margin));
 
 				d3.select('#senders').selectAll('text')
 					.data(json.rows)
 					.enter()
 					.append('text')
-					.attr('x', function (d, i) {
-						return i * w + (w / 2);
+					.attr('x', 5)
+					.attr('y', function (d, i) {
+						return i * h + (h / 2);
 					})
-					.attr('y', h)
 					.text(function (d) {
 						return d.key;
 					});

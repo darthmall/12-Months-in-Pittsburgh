@@ -333,7 +333,10 @@ width: 91.35%;
     }
 
     #senders text {
-        color: white;
+        alignment-baseline: central;
+        fill: black;
+        text-anchor: start;
+        text-transform: none;
     }
 
     #senders rect.bar {
