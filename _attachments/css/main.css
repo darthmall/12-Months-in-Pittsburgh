@@ -305,6 +305,21 @@ width: 91.35%;
         text-transform: uppercase;
     }
 
+    #intro {
+        background-color: black;
+        background-image: url('../img/pittsburgh.jpeg');
+        background-repeat: no-repeat;
+        background-position: 80% 65%;
+        color: white;
+        height: 302px;
+    }
+
+    #intro h2 {
+        margin: 20px;
+        text-shadow: black 0.1em 0.1em 0.2em;
+        text-transform: none;
+    }
+
     #colors rect {
         width: 20px;
         height: 20px;
