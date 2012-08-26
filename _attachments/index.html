@@ -19,7 +19,7 @@
         <script src="js/vendor/css3-mediaqueries.js"></script>
     </head>
 
-    <body class="container">
+    <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
@@ -30,16 +30,26 @@
             <h1>Pittsburgh</h1>
         </header>
 
-        <section id="intro" class="row">
-            <h2>From August 2011 until August 2012 I lived in Pittsburgh, working on my Masters degree in Human-Computer Interaction. During that time, I received 25 greeting cards from friends and family. This is a visualization of those cards.</h2>
+        <section id="intro" class="container">
+            <h2 class="row">From August 2011 until August 2012 I lived in Pittsburgh, working on my Masters degree in Human-Computer Interaction. During that time, I received 25 greeting cards from friends and family. This is a visualization of those cards.</h2>
         </section>
         
-        <section id="cards" class="row">
-            <svg id="colors" class="eightcol">
-            </svg>
-            <svg id="senders" class="fourcol last">
-            </svg>
+        <section id="cards" class="container">
+            <div class="row">
+                <svg id="colors" class="eightcol">
+                </svg>
+                <svg id="senders" class="fourcol last">
+                </svg>
+            </div>
         </section>
+
+        <article class="container">
+            <h2 class="row">Description</h2>
+        </article>
+
+        <article class="container">
+            <h2 class="row">Process</h2>
+        </article>
 
         <script src="//d3js.org/d3.v2.js"></script>
 
