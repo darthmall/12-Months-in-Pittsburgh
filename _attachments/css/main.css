@@ -312,8 +312,9 @@ width: 91.35%;
 
     #colors text {
         font-family: 'PT Sans Narrow', sans-serif;
-        text-transform: uppercase;
+        font-size: 1.8em;
         text-anchor: middle;
+        text-transform: uppercase;
     }
 
 /* ============================= */

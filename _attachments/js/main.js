@@ -43,10 +43,10 @@ CARDVIZ = {
 						return 'url(#' + d.id + '-gradient)';
 				  	})
 				  	.attr('x', function (d, i) {
-				  		return center[0] + 70 + (Number(d.key[2]) * 55);
+				  		return center[0] + 150 + (Number(d.key[2]) * 42);
 				  	})
 				  	.attr('y', (center[1] - 25))
-				  	.attr('width', 50)
+				  	.attr('width', 38)
 				  	.attr('height', 50)
 				  	.attr('transform', function (d) {
 				  		var angle = 30 + (Number(d.key[1]) - 1) * 30;
@@ -58,7 +58,7 @@ CARDVIZ = {
 				 	.enter()
 				 	.append('text')
 				 	.attr('x', center[0])
-				 	.attr('y', center[1] - 100)
+				 	.attr('y', center[1] - 150)
 				 	.attr('width', 50)
 				 	.attr('transform', function (d) {
 				 		var angle = 120 + ((Number(d.key[1]) - 1) * 30);
