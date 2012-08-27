@@ -523,8 +523,9 @@ width: 91.35%;
 /* ! Layout for desktop version   */
 /* ============================== */
     body {
+        background-color: #F2F2F2;
+        color: #0D0D0D;
         font-family: 'PT Sans', sans-serif;
-        
     }
     
     header {
@@ -545,10 +546,43 @@ width: 91.35%;
         margin: 0;
     }
 
+    nav {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    nav li {
+        text-align: center;
+    }
+
+    nav a {
+        font-family: 'PT Sans Narrow', sans-serif;
+        font-size: 1.5em;
+    }
+
     h1, h2, h3, h4, h5, h6 {
         font-family: 'PT Sans Narrow', sans-serif;
         font-weight: bold;
         text-transform: uppercase;
+    }
+
+    h1 {
+        font-size: 5.063em;
+    }
+
+    h2 {
+        font-size: 3.375em;
+        margin: 0;
+    }
+
+    h3 {
+        font-size: 2.25em;
+        font-style: italic;
+        margin: 0;
+    }
+
+    h4 {
+        font-size: 1.5em;
     }
 
     article,
@@ -556,6 +590,13 @@ width: 91.35%;
     section {
         padding-bottom: 60px;
         padding-top: 60px;
+    }
+
+    a,
+    a:visited,
+    a:hover {
+        color: #222;
+        text-decoration: none;
     }
 
     #intro {
@@ -566,8 +607,7 @@ width: 91.35%;
         color: white;
     }
 
-    #intro h2 {
-        font-size: 2em;
+    #intro h3 {
         text-shadow: black 0.1em 0.1em 0.2em;
         text-transform: none;
     }
@@ -595,7 +635,7 @@ width: 91.35%;
     }
 
     #senders rect.bar {
-        fill: red;
+        fill: #22253E;
     }
 
 /* ============================= */
