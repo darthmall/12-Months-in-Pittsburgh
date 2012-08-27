@@ -27,11 +27,64 @@ CARDVIZ = {
 			.domain([1, 3])
 			.range([0.9, 0.7]);
 
+		// Get the color entries and construct the sunburst diagram.
 		d3.json('/cards/_design/cardviz/_view/colors', function (json) {
+			var onMouseOver = function (d) {
+
+				// Recursively get all the IDs of cards below this node.
+				var getIds = function (d) {
+					var a = [];
+
+					if (d.children) {
+						for (var i = d.children.length - 1; i >= 0; i--) {
+							a = a.concat(getIds(d.children[i]));
+						}
+					} else {
+						return [d.id];
+					}
+
+					return a;
+				};
+
+				var cards = getIds(d),
+					bars;
+
+				var getSender = function (d) { 
+					return d.id; 
+				};
+
+				var sentBy = function (el, idx, a) { 
+					return (cards.indexOf(el) > -1);
+				};
+
+				hover = this;
+
+				bars = d3.selectAll('#senders .bar');
+
+				bars.filter(function (e) { return !e.values.map(getSender).some(sentBy); })
+					.transition()
+					.duration(500)
+					.style('fill-opacity', 0.3);
+
+				bars.filter(function (e) { return e.values.map(getSender).some(sentBy); })
+					.transition()
+					.duration(500)
+					.style('fill-opacity', 1);
+			};
+
+			var onMouseOut = function (d) {
+				if (hover === this) {
+					hover = null;
+					d3.selectAll('#senders .bar')
+						.transition()
+						.duration(500)
+						.style('fill-opacity', 1);
+				}
+			};
 
 			var cards = d3.nest()
 				.key(function (d) { return d.key[0]; })
-				.key(function (d) { return d.key[1]; })
+				.key(function (d) { return CARDVIZ.MONTHS[d.key[1]]; })
 				.key(function (d) { return d.key[2]; })
 				.rollup(function (d) { 
 					return d.map(function(v) {
@@ -48,6 +101,7 @@ CARDVIZ = {
 				'values': cards.entries(json.rows)
 			});
 
+			// Use this to keep track of the element we're hovering over.
 			var hover;
 
 			colors.selectAll('path')
@@ -67,35 +121,8 @@ CARDVIZ = {
 						$.fancybox.open('/cards/' + d.id + '/card.png');
 					}
 				})
-				.on('mouseover', function (d) {
-					if (d.id) {
-						hover = this;
-
-						d3.selectAll('#senders .bar')
-							.filter(function (e) {
-								return (e.values.map(function (f) { return f.id; }).indexOf(d.id) < 0);
-							})
-							.transition()
-							.duration(500)
-							.style('fill-opacity', 0.3);
-						d3.selectAll('#senders .bar')
-							.filter(function (e) {
-								return (e.values.map(function (f) { return f.id; }).indexOf(d.id) > -1);
-							})
-							.transition()
-							.duration(500)
-							.style('fill-opacity', 1);
-					}
-				})
-				.on('mouseout', function (d) {
-					if (hover === this) {
-						hover = null;
-						d3.selectAll('#senders .bar')
-							.transition()
-							.duration(500)
-							.style('fill-opacity', 1);
-					}
-				});
+				.on('mouseover', onMouseOver)
+				.on('mouseout', onMouseOut);
 
 			colors.selectAll('text')
 				.data(cardData)
@@ -105,6 +132,8 @@ CARDVIZ = {
 				.attr("transform", function(d) {
 				        return "translate(" + arc.centroid(d) + ")";
 				      })
+				.on('mouseover', onMouseOver)
+				.on('mouseout', onMouseOut)
 				.text(function (d) { return d.key; });
 		});
 
