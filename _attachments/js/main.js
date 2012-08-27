@@ -33,7 +33,11 @@ CARDVIZ = {
 				.key(function (d) { return d.key[2]; })
 				.rollup(function (d) { 
 					return d.map(function(v) {
-						return v.value;
+						return {
+							'color': v.value.color,
+							'frequency': v.value.frequency,
+							'id': v.id
+						};
 					});
 				});
 
@@ -56,40 +60,44 @@ CARDVIZ = {
 				.attr('display', function (d) { return (d.depth) ? null : 'none'; })
 				.attr('d', arc)
 				.attr('fillRule', 'evenodd')
-				.attr('id', function (d) { return d.depth + '-' + d.key; })
 				.style('stroke', '#fff')
 				.style('strokeWidth', '3')
 				.style('fill', function (d) { 
 					return (d.color) ? '#' + d.color : d3.hsl(0, 0, lScale(d.depth)).toString();
-				})
-				.append('title')
-				.text(function (d) { return d.key; });
+				});
 
 			colors.selectAll('text')
 				.data(cardData)
 				.enter()
 				.append('text')
-				.attr('display', function (d) { return (d.depth) ? null : 'none'; })
+				.attr('display', function (d) { return (d.depth && d.depth < 3) ? null : 'none'; })
 				.attr("transform", function(d) {
-				        var angle = d.x + d.dx / 2 * 180 / Math.PI - 90;
-				        return "rotate(" + angle + ")translate(" + d.y + ")rotate(" + (angle > 90 ? -180 : 0) + ")";
+				        return "translate(" + arc.centroid(d) + ")";
 				      })
 				.text(function (d) { return d.key; });
 		});
 
-		var bargraph = function (json) {
+		d3.json('/cards/_design/cardviz/_view/senders', function (json) {
 			if (json) {
-				var w = $('#senders').width();
-				var h = $('#senders').width() / json.rows.length;
-				var margin = Math.max(1, Math.floor(h * 0.1));
+				var data = d3.nest()
+					.key(function (d) { return d.key; })
+					.entries(json.rows);
+
+				var w = $('#senders').width(),
+					h = $('#senders').width() / data.length,
+					margin = Math.max(1, Math.floor(h * 0.1));
+
 				var scale = d3.scale.linear()
-					.domain([0, d3.max(json.rows.map(function (d) {
-						return d.value;
+					.domain([0, d3.max(data.map(function (d) {
+						return d.values.length;
 					}))])
 					.range([0, (w - 65) * 0.9]);
 
+				var hover;
+
+
 				d3.select('#senders').selectAll('rect')
-					.data(json.rows)
+					.data(data)
 					.enter()
 					.append('rect')
 					.attr('class', 'bar')
@@ -98,12 +106,57 @@ CARDVIZ = {
 						return margin + (i * h);
 					})
 					.attr('width', function (d) {
-						return scale(d.value);
+						return scale(d.values.length);
 					})
-					.attr('height', h - (2 * margin));
+					.attr('height', h - (2 * margin))
+					.on('mouseover', function (d) {
+						var sentCards = d.values.map(function (e) { return e.id; });
+
+						hover = this;
+
+						d3.selectAll('.bar').filter(function (d) {
+								return hover !== this;
+							})
+							.transition()
+							.duration(500)
+							.style('fill-opacity', 0.3);
+
+						d3.selectAll('#colors path')
+							.filter(function (d) {
+								return (d.id && sentCards.indexOf(d.id) < 0);
+							})
+							.transition()
+							.duration(500)
+							.style('fill-opacity', 0.1);
+					})
+					.on('mouseout', function (d) {
+						var sentCards = d.values.map(function (e) { return e.id; });
+
+						if (this === hover) {
+							hover = null;
+							d3.selectAll('.bar').transition()
+								.duration(500)
+								.style('fill-opacity', 1);
+							d3.selectAll('#colors path')
+								.transition()
+								.duration(500)
+								.style('fill-opacity', 1);
+						} else {
+							d3.select(this).transition()
+								.duration(500)
+								.style('fill-opacity', 0.3);
+							d3.selectAll('#colors path')
+								.filter(function (d) {
+									return (d.id && sentCards.indexOf(d.id) > -1);
+								})
+								.transition()
+								.duration(500)
+								.style('fill-opacity', 0.1);
+						}
+					});
 
 				d3.select('#senders').selectAll('text')
-					.data(json.rows)
+					.data(data)
 					.enter()
 					.append('text')
 					.attr('x', 60)
@@ -114,9 +167,9 @@ CARDVIZ = {
 						return d.key;
 					});
 			}
-		};
+		});
 
-		var resize = function () {
+		$(window).resize(function () {
 			var svg = $('#colors');
 			var w = svg.width();
 			var h = svg.height();
@@ -126,10 +179,7 @@ CARDVIZ = {
 			} else {
 				colors.attr('transform', 'translate(' + w/2 + ',' + h/2 + ') scale(' + h/height + ')');				
 			}
-		}
-
-		d3.json('/cards/_design/cardviz/_view/senders?group=true', bargraph);
-		$(window).resize(resize);
+		});
 	}
 };
 

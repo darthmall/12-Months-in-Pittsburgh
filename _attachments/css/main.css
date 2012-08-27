@@ -305,24 +305,32 @@ width: 91.35%;
         text-transform: uppercase;
     }
 
+    article,
+    header,
+    section {
+        padding-bottom: 60px;
+        padding-top: 60px;
+    }
+
     #intro {
         background-color: black;
         background-image: url('../img/pittsburgh.jpeg');
         background-repeat: no-repeat;
         background-position: 80% 65%;
         color: white;
-        height: 302px;
     }
 
     #intro h2 {
+        font-size: 2em;
         text-shadow: black 0.1em 0.1em 0.2em;
         text-transform: none;
     }
 
     #cards {
     }
-    
+
     svg text {
+        alignment-baseline: central;
         font-family: 'PT Sans Narrow', sans-serif;
         font-size: 1.3em;
         text-anchor: middle;
@@ -330,7 +338,6 @@ width: 91.35%;
     }
 
     #senders text {
-        alignment-baseline: central;
         fill: black;
         text-anchor: end;
         text-transform: none;
