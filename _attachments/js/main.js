@@ -64,6 +64,11 @@ CARDVIZ = {
 				.style('strokeWidth', '3')
 				.style('fill', function (d) { 
 					return (d.color) ? '#' + d.color : d3.hsl(0, 0, lScale(d.depth)).toString();
+				})
+				.on('click', function (d) {
+					if (d.id) {
+						$.fancybox.open('/cards/' + d.id + '/card.png');
+					}
 				});
 
 			colors.selectAll('text')
