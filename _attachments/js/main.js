@@ -30,6 +30,8 @@ CARDVIZ = {
 		d3.json('/cards/_design/cardviz/_view/colors', function (json) {
 
 			var cards = d3.nest()
+				.key(function (d) { return d.key[0]; })
+				.key(function (d) { return d.key[1]; })
 				.key(function (d) { return d.key[2]; })
 				.rollup(function (d) { 
 					return d.map(function(v) {
@@ -41,17 +43,10 @@ CARDVIZ = {
 					});
 				});
 
-			var months = d3.nest()
-				.key(function (d) { return CARDVIZ.MONTHS[d.key[1]]; })
-				.rollup(function (d) { return cards.entries(d); });
-
 			var cardData = partition.nodes({
 				'key': 'cards',
-				'values': d3.nest()
-					.key(function (d) { return d.key[0]; })
-					.rollup(function (d) { return months.entries(d); })
-					.entries(json.rows)
-				});
+				'values': cards.entries(json.rows)
+			});
 
 			var hover;
 
