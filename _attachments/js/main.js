@@ -53,21 +53,52 @@ CARDVIZ = {
 					.entries(json.rows)
 				});
 
+			var hover;
+
 			colors.selectAll('path')
 				.data(cardData)
 				.enter()
 				.append('path')
 				.attr('display', function (d) { return (d.depth) ? null : 'none'; })
 				.attr('d', arc)
-				.attr('fillRule', 'evenodd')
-				.style('stroke', '#fff')
-				.style('strokeWidth', '3')
 				.style('fill', function (d) { 
 					return (d.color) ? '#' + d.color : d3.hsl(0, 0, lScale(d.depth)).toString();
+				})
+				.style('cursor', function (d) {
+					return (d.depth === 4) ? 'pointer' : null;
 				})
 				.on('click', function (d) {
 					if (d.id) {
 						$.fancybox.open('/cards/' + d.id + '/card.png');
+					}
+				})
+				.on('mouseover', function (d) {
+					if (d.id) {
+						hover = this;
+
+						d3.selectAll('#senders .bar')
+							.filter(function (e) {
+								return (e.values.map(function (f) { return f.id; }).indexOf(d.id) < 0);
+							})
+							.transition()
+							.duration(500)
+							.style('fill-opacity', 0.3);
+						d3.selectAll('#senders .bar')
+							.filter(function (e) {
+								return (e.values.map(function (f) { return f.id; }).indexOf(d.id) > -1);
+							})
+							.transition()
+							.duration(500)
+							.style('fill-opacity', 1);
+					}
+				})
+				.on('mouseout', function (d) {
+					if (hover === this) {
+						hover = null;
+						d3.selectAll('#senders .bar')
+							.transition()
+							.duration(500)
+							.style('fill-opacity', 1);
 					}
 				});
 
@@ -135,7 +166,7 @@ CARDVIZ = {
 							.style('fill-opacity', 0.1);
 					})
 					.on('mouseout', function (d) {
-						var sentCards = d.values.map(function (e) { return e.id; });
+							var sentCards = d.values.map(function (e) { return e.id; });
 
 						if (this === hover) {
 							hover = null;
@@ -158,7 +189,7 @@ CARDVIZ = {
 								.duration(500)
 								.style('fill-opacity', 0.1);
 						}
-					});
+					})
 
 				d3.select('#senders').selectAll('text')
 					.data(data)
