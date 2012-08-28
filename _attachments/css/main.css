@@ -1,602 +1,93 @@
-/*
- * HTML5 Boilerplate
- *
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
-html,
-button,
-input,
-select,
-textarea {
-    color: #222;
-}
-
-body {
-    font-size: 1em;
-    line-height: 1.4;
-}
-
-a {
-    color: #00e;
-}
-
-a:visited {
-    color: #551a8b;
-}
-
-a:hover {
-    color: #06e;
-}
-
-/*
- * Remove text-shadow in selection highlight: h5bp.com/i
- * These selection declarations have to be separate.
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
-
-::selection {
-    background: #b3d4fc;
-    text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-}
-
-/*
- * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
- */
-
-img {
-    vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-    resize: vertical;
-}
-
-/* ==========================================================================
-   Chrome Frame prompt
-   ========================================================================== */
-
-.chromeframe {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
-}
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-/*! fancyBox v2.1.0 fancyapps.com | fancyapps.com/fancybox/#license */
-.fancybox-wrap,
-.fancybox-skin,
-.fancybox-outer,
-.fancybox-inner,
-.fancybox-image,
-.fancybox-wrap iframe,
-.fancybox-wrap object,
-.fancybox-nav,
-.fancybox-nav span,
-.fancybox-tmp
-{
-    padding: 0;
-    margin: 0;
-    border: 0;
-    outline: none;
-    vertical-align: top;
-}
-
-.fancybox-wrap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 8020;
-}
-
-.fancybox-skin {
-    position: relative;
-    background: #f9f9f9;
-    color: #444;
-    text-shadow: none;
-    -webkit-border-radius: 4px;
-       -moz-border-radius: 4px;
-            border-radius: 4px;
-}
-
-.fancybox-opened {
-    z-index: 8030;
-}
-
-.fancybox-opened .fancybox-skin {
-    -webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-       -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-.fancybox-outer, .fancybox-inner {
-    position: relative;
-}
-
-.fancybox-inner {
-    overflow: hidden;
-}
-
-.fancybox-type-iframe .fancybox-inner {
-    -webkit-overflow-scrolling: touch;
-}
-
-.fancybox-error {
-    color: #444;
-    font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
-    margin: 0;
-    padding: 15px;
-    white-space: nowrap;
-}
-
-.fancybox-image, .fancybox-iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-.fancybox-image {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-    background-image: url('../img/fancybox/fancybox_sprite.png');
-}
-
-#fancybox-loading {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -22px;
-    margin-left: -22px;
-    background-position: 0 -108px;
-    opacity: 0.8;
-    cursor: pointer;
-    z-index: 8060;
-}
-
-#fancybox-loading div {
-    width: 44px;
-    height: 44px;
-    background: url('../img/fancybox/fancybox_loading.gif') center center no-repeat;
-}
-
-.fancybox-close {
-    position: absolute;
-    top: -18px;
-    right: -18px;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-    z-index: 8040;
-}
-
-.fancybox-nav {
-    position: absolute;
-    top: 0;
-    width: 40%;
-    height: 100%;
-    cursor: pointer;
-    text-decoration: none;
-    background: transparent url('../img/fancybox/blank.gif'); /* helps IE */
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    z-index: 8040;
-}
-
-.fancybox-prev {
-    left: 0;
-}
-
-.fancybox-next {
-    right: 0;
-}
-
-.fancybox-nav span {
-    position: absolute;
-    top: 50%;
-    width: 36px;
-    height: 34px;
-    margin-top: -18px;
-    cursor: pointer;
-    z-index: 8040;
-    visibility: hidden;
-}
-
-.fancybox-prev span {
-    left: 10px;
-    background-position: 0 -36px;
-}
-
-.fancybox-next span {
-    right: 10px;
-    background-position: 0 -72px;
-}
-
-.fancybox-nav:hover span {
-    visibility: visible;
-}
-
-.fancybox-tmp {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-    visibility: hidden;
-}
-
-/* Overlay helper */
-
-.fancybox-lock {
-    overflow: hidden;
-}
-
-.fancybox-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    display: none;
-    z-index: 8010;
-    background: url('../img/fancybox/fancybox_overlay.png');
-}
-
-.fancybox-overlay-fixed {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-}
-
-.fancybox-lock .fancybox-overlay {
-    overflow: auto;
-    overflow-y: scroll;
-}
-
-/* Title helper */
-
-.fancybox-title {
-    visibility: hidden;
-    font: normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
-    position: relative;
-    text-shadow: none;
-    z-index: 8050;
-}
-
-.fancybox-opened .fancybox-title {
-    visibility: visible;
-}
-
-.fancybox-title-float-wrap {
-    position: absolute;
-    bottom: 0;
-    right: 50%;
-    margin-bottom: -35px;
-    z-index: 8050;
-    text-align: center;
-}
-
-.fancybox-title-float-wrap .child {
-    display: inline-block;
-    margin-right: -100%;
-    padding: 2px 20px;
-    background: transparent; /* Fallback for web browsers that doesn't support RGBa */
-    background: rgba(0, 0, 0, 0.8);
-    -webkit-border-radius: 15px;
-       -moz-border-radius: 15px;
-            border-radius: 15px;
-    text-shadow: 0 1px 2px #222;
-    color: #FFF;
-    font-weight: bold;
-    line-height: 24px;
-    white-space: nowrap;
-}
-
-.fancybox-title-outside-wrap {
-    position: relative;
-    margin-top: 10px;
-    color: #fff;
-}
-
-.fancybox-title-inside-wrap {
-    padding-top: 10px;
-}
-
-.fancybox-title-over-wrap {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    color: #fff;
-    padding: 10px;
-    background: #000;
-    background: rgba(0, 0, 0, .8);
-}
-
-/* ==================================================================================================================== */
-/* ! The 1140px Grid V2 by Andy Taylor \ http://cssgrid.net \ http://www.twitter.com/andytlr \ http://www.andytlr.com   */
-/* ==================================================================================================================== */
-
-.container {
-padding-left: 20px;
-padding-right: 20px;
-}
-
-.row {
-width: 100%;
-max-width: 1140px;
-min-width: 755px;
-margin: 0 auto;
-overflow: hidden;
-}
-
-.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol {
-margin-right: 3.8%;
-float: left;
-min-height: 1px;
-}
-
-.row .onecol {
-width: 4.85%;
-}
-
-.row .twocol {
-width: 13.45%;
-}
-
-.row .threecol {
-width: 22.05%;
-}
-
-.row .fourcol {
-width: 30.75%;
-}
-
-.row .fivecol {
-width: 39.45%;
-}
-
-.row .sixcol {
-width: 48%;
-}
-
-.row .sevencol {
-width: 56.75%;
-}
-
-.row .eightcol {
-width: 65.4%;
-}
-
-.row .ninecol {
-width: 74.05%;
-}
-
-.row .tencol {
-width: 82.7%;
-}
-
-.row .elevencol {
-width: 91.35%;
-}
-
-.row .twelvecol {
-width: 100%;
-float: left;
-}
-
-.last {
-margin-right: 0px;
-}
-
-img, object, embed {
-max-width: 100%;
-}
-
-img {
-    height: auto;
-}
-
-
-/* Smaller screens */
-
-@media only screen and (max-width: 1023px) {
-
-    body {
-    font-size: 0.8em;
-    line-height: 1.5em;
-    }
-    
-    }
-
-
-/* Mobile */
-
-@media handheld, only screen and (max-width: 767px) {
-
-    body {
-    font-size: 16px;
-    -webkit-text-size-adjust: none;
-    }
-    
-    .row, body, .container {
-    width: 100%;
-    min-width: 0;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    }
-    
-    .row .onecol, .row .twocol, .row .threecol, .row .fourcol, .row .fivecol, .row .sixcol, .row .sevencol, .row .eightcol, .row .ninecol, .row .tencol, .row .elevencol, .row .twelvecol {
-    width: auto;
-    float: none;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 20px;
-    padding-right: 20px;
-    }
-
-}.onecol {
-width: 4.7%;
-}
-
-.twocol {
-width: 13.2%;
-}
-
-.threecol {
-width: 22.05%;
-}
-
-.fourcol {
-width: 30.6%;
-}
-
-.fivecol {
-width: 39%;
-}
-
-.sixcol {
-width: 48%;
-}
-
-.sevencol {
-width: 56.75%;
-}
-
-.eightcol {
-width: 61.6%;
-}
-
-.ninecol {
-width: 74.05%;
-}
-
-.tencol {
-width: 82%;
-}
-
-.elevencol {
-width: 91.35%;
-}
-
 /* ============================== */
 /* ! Layout for desktop version   */
 /* ============================== */
     body {
         background-color: #F2F2F2;
-        color: #0D0D0D;
         font-family: 'PT Sans', sans-serif;
     }
     
+    header,
+    body > section,
+    body > article,
+    footer {
+        padding-bottom: 11.391em;
+        padding-top: 11.391em;
+    }
+
     header {
-        text-align: center;
+        background-color: #f2ef95;
+        color: #22253e;
     }
 
     header h1 {
-        font-family: 'Yellowtail', cursive;
-        margin-top: 0;
-        text-transform: none;
-    }
-
-    header h2 {
-        margin-bottom: 0;
-    }
-
-    header h3 {
+        font-family: 'Open Sans Condensed';
         margin: 0;
-    }
-
-    nav {
-        padding-bottom: 10px;
-        padding-top: 10px;
-    }
-
-    nav li {
-        text-align: center;
-    }
-
-    nav a {
-        font-family: 'PT Sans Narrow', sans-serif;
-        font-size: 1.5em;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'PT Sans Narrow', sans-serif;
-        font-weight: bold;
         text-transform: uppercase;
     }
 
+    header #pittsburgh {
+        background-image: url('../img/pittsburgh.jpeg');
+        background-size: cover;
+        border: solid 5px #F2F2F2;
+        color: #f2d129;
+        display: inline-block;
+        font-family: 'Yellowtail', cursive;
+        padding: .5em .4em;
+        text-transform: capitalize;
+        -moz-transform: rotate(9deg);
+        -o-transform: rotate(9deg);
+        -webkit-transform: rotate(9deg);
+        transform: rotate(9deg);
+        -webkit-text-shadow: -1px 0 #0d0d0d, 0 1px #0d0d0d, 1px 0 #0d0d0d, 0 -1px #0d0d0d;
+        -o-text-shadow: -1px 0 #0d0d0d, 0 1px #0d0d0d, 1px 0 #0d0d0d, 0 -1px #0d0d0d;
+        -moz-text-shadow: -1px 0 #0d0d0d, 0 1px #0d0d0d, 1px 0 #0d0d0d, 0 -1px #0d0d0d;
+        text-shadow: -1px 0 #0d0d0d, 0 1px #0d0d0d, 1px 0 #0d0d0d, 0 -1px #0d0d0d;
+        -webkit-box-shadow: 3px 3px 12px #0d0d0d;
+        -o-box-shadow: 3px 3px 12px #0d0d0d;
+        -moz-box-shadow: 3px 3px 12px #0d0d0d;
+        box-shadow: 3px 3px 12px #0d0d0d;
+        float: right;
+        font-size: 0.667em;
+        margin-top: -2.4em;
+    }
+
     h1 {
-        font-size: 5.063em;
+        font-size: 7.594em;
+        line-height: 1.2em;
     }
 
     h2 {
         font-size: 3.375em;
-        margin: 0;
     }
 
     h3 {
         font-size: 2.25em;
-        font-style: italic;
-        margin: 0;
     }
 
     h4 {
         font-size: 1.5em;
     }
 
-    article,
-    header,
-    section {
-        padding-bottom: 60px;
-        padding-top: 60px;
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'PT Sans Narrow', sans-serif;
+        font-weight: bold;
+        line-height: 1.6em;
+        text-transform: uppercase;
     }
 
-    a,
-    a:visited,
-    a:hover {
-        color: #222;
-        text-decoration: none;
+    a {
+        font-weight: bold;
+        -webkit-transition: color 0.3s ease-in-out;
+        -o-transition: color 0.3s ease-in-out;
+        -moz-transition: color 0.3s ease-in-out;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .caption {
+        font-size: 0.667em;
+        font-style: italic;
+        margin-top: 1.5em;
+        text-align: center;
     }
 
     #intro {
@@ -608,17 +99,18 @@ width: 91.35%;
     }
 
     #intro h3 {
+        color: #F2F2F2  ;
+        font-size: 2.25em;
+        padding-bottom: .667em;
+        padding-top: .667em;
         text-shadow: black 0.1em 0.1em 0.2em;
         text-transform: none;
-    }
-
-    #cards {
     }
 
     svg text {
         alignment-baseline: central;
         font-family: 'PT Sans Narrow', sans-serif;
-        font-size: 1.3em;
+        font-size: 1.5em;
         text-anchor: middle;
         text-transform: uppercase;
     }
@@ -629,13 +121,51 @@ width: 91.35%;
     }
 
     #senders text {
-        fill: black;
+        fill: #0d0d0d;
         text-anchor: end;
         text-transform: none;
     }
 
     #senders rect.bar {
         fill: #22253E;
+    }
+
+    #about {
+        background-color: #22253E;
+        color: #F2F2F2;
+    }
+
+    #technical {
+        background-color: #f2ef95;
+    }
+
+    #technical img {
+        -webkit-box-shadow: 3px 3px 12px #0d0d0d;
+        -o-box-shadow: 3px 3px 12px #0d0d0d;
+        -moz-box-shadow: 3px 3px 12px #0d0d0d;
+        box-shadow: 3px 3px 12px #0d0d0d;
+    }
+
+    footer {
+        background-color: #b24b68;
+        color: #F2F2F2;
+    }
+
+    footer h2 {
+        color: #f2ef95;
+        display: inline-block;
+        font-family: 'Yellowtail';
+        -webkit-transform: rotate(-18deg);
+        -o-transform: rotate(-18deg);
+        -moz-transform: rotate(-18deg);
+        transform: rotate(-18deg);
+        text-transform: lowercase;
+    }
+
+    footer h1 a,
+    footer h1 a:hover {
+        color: #F2F2F2;
+        text-transform: none;
     }
 
 /* ============================= */
@@ -662,192 +192,4 @@ width: 91.35%;
         background-size: 212px 303px;
     }*/
 
-}
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Image replacement
- */
-
-.ir {
-    background-color: transparent;
-    border: 0;
-    overflow: hidden;
-    /* IE 6/7 fallback */
-    *text-indent: -9999px;
-}
-
-.ir:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 100%;
-}
-
-/*
- * Hide from both screenreaders and browsers: h5bp.com/u
- */
-
-.hidden {
-    display: none !important;
-    visibility: hidden;
-}
-
-/*
- * Hide only visually, but have it available for screenreaders: h5bp.com/v
- */
-
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
-
-/*
- * Extends the .visuallyhidden class to allow the element to be focusable
- * when navigated to via the keyboard: h5bp.com/p
- */
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
-}
-
-/*
- * Hide visually and from screenreaders, but maintain layout
- */
-
-.invisible {
-    visibility: hidden;
-}
-
-/*
- * Clearfix: contain floats
- *
- * For modern browsers
- * 1. The space content is one way to avoid an Opera bug when the
- *    `contenteditable` attribute is included anywhere else in the document.
- *    Otherwise it causes space to appear at the top and bottom of elements
- *    that receive the `clearfix` class.
- * 2. The use of `table` rather than `block` is only necessary if using
- *    `:before` to contain the top-margins of child elements.
- */
-
-.clearfix:before,
-.clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
-
-.clearfix:after {
-    clear: both;
-}
-
-/*
- * For IE 6/7 only
- * Include this rule to trigger hasLayout and contain floats.
- */
-
-.clearfix {
-    *zoom: 1;
-}
-
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   Theses examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (min-resolution: 144dpi) {
-    /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid required HTTP connection: h5bp.com/r
-   ========================================================================== */
-
-@media print {
-    * {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster: h5bp.com/s */
-        box-shadow:none !important;
-        text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
-     * Don't show links for images, or javascript/internal links
-     */
-
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    thead {
-        display: table-header-group; /* h5bp.com/t */
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    @page {
-        margin: 0.5cm;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
 }

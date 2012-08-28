@@ -5,5 +5,7 @@
   // ".*\\.swp$"
   // ".*\\.bak$"
   "cardviz\\.sublime-project",
-  "cardviz\\.sublime-workspace"
+  "cardviz\\.sublime-workspace",
+  ".*\\.psd",
+  ".*\\.aco"
 ]

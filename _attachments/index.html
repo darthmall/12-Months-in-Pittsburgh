@@ -6,82 +6,125 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>12 Months in Pittsburgh</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link href='http://fonts.googleapis.com/css?family=Yellowtail|PT+Sans:400,700,400italic,700italic|PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css/normalize.css">
+        <link href='http://fonts.googleapis.com/css?family=Yellowtail|PT+Sans:400,700,400italic,700italic|PT+Sans+Narrow:400,700|Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/jquery.fancybox.css">
         <link rel="stylesheet" href="css/main.css">
 
-        <script src="js/vendor/modernizr-2.6.1.min.js"></script>
-        <script src="js/vendor/css3-mediaqueries.js"></script>
     </head>
 
     <body>
         <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+            <p class="chromeframe">You are using an outdated brow-fluidser. <a href="http://brow-fluidsehappy.com/">Upgrade your brow-fluidser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
 
         <header>
-            <h2>12 Months</h2>
-            <h3>in</h3>
-            <h1>Pittsburgh</h1>
+            <div class="container">
+                <div class="row">
+                    <h1 class="span12">
+                        <span id="twelvemos">12 Months in&hellip;</span>
+                        <span id="pittsburgh">Pittsburgh</span>
+                    </h1>
+                </div>
+            </div>
         </header>
 
-        <nav class="container">
-            <ul class="row">
-                <li class="sixcol">
-                    <a href="#cards">Visualization</a>
-                </li>
-                <li class="sixcol last">
-                    <a href="#about">About</a>
-                </li>
-            </ul>
-        </nav>
-
         <section id="intro">
-            <div style="background-color:rgba(96,96,96,0.7)" class="container">
-                <h3 class="row">From August 2011 until August 2012 I lived in Pittsburgh, working on my Masters degree in Human-Computer Interaction. During that time, I received 25 greeting cards from friends and family. This is a visualization of those cards.</h3>
+            <div style="background-color:rgba(96,96,96,0.7)">
+                <h3 class="container">From August 2011 until August 2012 I lived in Pittsburgh, working on my Masters degree in Human-Computer Interaction. During that time, I received 25 greeting cards from friends and family. This is a visualization of those cards.</h3>
             </div>
         </section>
         
-        <section id="cards" class="container">
-            <div class="row">
-                <svg id="colors" class="eightcol"></svg>
+        <section id="cards">
+            <div class="container">
+                <div class="row">
+                    <svg id="colors" class="span8"></svg>
 
-                <div class="fourcol last">
-                    <h2 style="margin-left: 65px">Senders</h2>
-                    <svg id="senders"></svg>
+                    <div class="span4">
+                        <h2 style="margin-left: 65px">Senders</h2>
+                        <svg id="senders"></svg>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <article id="about" class="container">
-            <div class="row">
-                <h2>About</h2>
+        <article id="about">
+            <div class="container">
+                <div class="row">
+                    <section class="span4 offset1">
+                        <h3>About</h3>
+                        <p>This visualization illustrates the number of cards I received over the course of the 12 months I spent in Pittsburgh working on my Masters degree. An average of just over 2 cards per month. As the year progressed I began collecting these cards on the mantlepiece of my apartment. By the end of the year the mantle was covered end-to-end, two cards deep in some places. It was striking to see all those cards together like that and I wanted to share that feeling with a larger audience as a way to thank everyone that encouraged me or remembered my birthday while I was working on my degree.</p>
 
-                <section class="sixcol">
-                    <h3>Description</h3>
-                    <p>The outer ring of the diagram represents the proportions of the dominant colors present in each greeting card I received. Each section in the next ring corresponds to a single card. The third ring in corresponds to the month in which I received the card. And the final ring shows the year.</p>
+                        <p>I&rsquo;m not sure this visualization has quite the same impact as the row of cards displayed above the fireplace in my apartment, but it does show how many of my friends and family&mdash;including my parents&rsquo; dog&mdash;thought of me while I was sequestered in our lab space at 300 S. Craig St. in Pittsburgh.</p>
+                    </section>
+                    <section class="span4 offset2">
+                        <h3>Description</h3>
+                        <p>The outer ring of the diagram represents the proportions of the dominant colors present in each greeting card I received. Each section in the next ring corresponds to a single card. The third ring in corresponds to the month in which I received the card. And the final ring shows the year.</p>
 
-                    <p>The bar graph shows all of the people that gave me cards over the course of those 12 months.</p>
+                        <p>The bar graph shows all of the people that gave me cards over the course of those 12 months.</p>
 
-                    <p>You can hover over each bar to highlight the cards that were sent by that person. Or hover over a color histogram to highlight the the people that gave me that card. Click a histogram to see the actual card.
-                </section>
-                <section class="sixcol last">
-                    <h3>Process</h3>
-                </section>
+                        <p>You can hover over each bar to highlight the cards that were sent by that person. Or hover over a color histogram to highlight the the people that gave me that card. Click a histogram to see the actual card.</p>
+                    </section>
+                </div>
             </div>
         </article>
 
-        <script src="//d3js.org/d3.v2.js"></script>
+        <article id="technical">
+            <div class="container">
+                <div class="row">
+                    <section class="span2">
+                        <h3>Processing</h3>
+                        <p>I used <a href="http://toxiclibs.org/">toxiclibs</a> and <a href="http://processing.org">Processing</a> to quantize the colors in each image and find the dominant colors in each card. The Processing application loaded all 25 cards and provided controls to tune the quantization threshold and the sampling rate. I selected a threshold and sampling rate that yielded 2–3 clearly dominant colors in each card and exported that to a CSV file.</p>
+                    </section>
+
+                    <section class="span2">
+                        <h3>Python</h3>
+                        <p>I imported the CSV files generated by my Processing application into CouchDB using a <a href="http://python.org">Python</a> script with the <a href="http://code.google.com/p/couchdb-python/">couchdb-python</a> module. The script attached the images to each JSON document along with the dominant color data. I manually annotated each entry with the sender.</p>
+                    </section>
+
+                    <section class="span2">
+                        <h3>CouchDB</h3>
+                        <p>I stored the data in a <a href="http://couchdb.apache.org/">CouchDB</a> database for easy access over XHR. The database is hosted by <a href="http://www.iriscouch.com/">Iris Couch</a>.</p>
+                    </section>
+
+                    <section class="span2">
+                        <h3>Web</h3>
+                        <p>The visualization itself was built as an SVG directly in the DOM using <a href="http://d3js.org/">d3</a>. I used the <a href="http://twitter.github.com/bootstrap/index.html">Twitter Bootstrap</a> to set up the basics needed for the page, and added <a href="http://fancyapps.com/fancybox/">fancyBox</a> to display the images of each card.</p>
+                    </section>
+
+                    <section class="span4">
+                        <h3>&nbsp;</h3>
+                        <img src="img/quantization_screenshot.png" alt="The color quantization program allows you to change the threshold and the sample rate of the quantization algorithm and exports the data to CSV." />
+                        <p class="caption">Color quantization Processing application.</p>
+                    </section>
+
+                    <p class="span12">The code for both the <a href="http://github.com/darthmall/PittsburghCardsColorQuant">Processing sketch</a> and the <a href="http://github.com/darthmall/12-Months-in-Pittsburgh">visualization</a> are available from GitHub.</p>
+                </div>
+
+            </div>
+        </article>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <h2 class="span4 offset1">brought to you by&hellip;</h2>
+                </div>
+                <div class="row">
+                    <h1 class="span8 offset3"><a href="http://portfolio.evan.sh">Evan Sheehan</a></h1>
+                </div>
+            </div>
+        </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
 
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.fancybox.pack.js"></script>
+        <script src="//d3js.org/d3.v2.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>
